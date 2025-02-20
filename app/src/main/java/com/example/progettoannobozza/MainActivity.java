@@ -1,6 +1,8 @@
 package com.example.progettoannobozza;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +22,23 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Collegamento alle risorse del layout
+        Button loginButton = findViewById(R.id.loginButton);
+        Button registerButton = findViewById(R.id.registerButton);
+
+        // Click listener per il pulsante di LOGIN
+        loginButton.setOnClickListener(v -> {
+            // Avvio dell'Activity LoginActivity
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        });
+
+        // Click listener per il pulsante di REGISTRAZIONE
+        registerButton.setOnClickListener(v -> {
+            // Avvio dell'Activity RegisterActivity
+            startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+        });
+
+
     }
 }
