@@ -10,6 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.gson.Gson;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -39,6 +41,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, RegisterActivity.class));
         });
 
+        // Ricevi la stringa JSON dall'Intent
+        String utenteJson = getIntent().getStringExtra("utente");
 
+        // Converti la stringa JSON in un oggetto Utente
+        if (utenteJson != null) {
+            Gson gson = new Gson();
+            Utente utente = gson.fromJson(utenteJson, Utente.class);
+
+            // Ora puoi usare l'oggetto utente
+            System.out.println("Nome: " + utente.getNome());
+            System.out.println("Cognome: " + utente.getCognome());
+            System.out.println("Mail: " + utente.getMail());
+            System.out.println("Password: " + utente.getPassword());
+        }
     }
 }
