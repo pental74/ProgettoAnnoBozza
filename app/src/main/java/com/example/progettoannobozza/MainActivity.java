@@ -1,6 +1,7 @@
 package com.example.progettoannobozza;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -13,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
+
+    String utenteJson= null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,15 @@ public class MainActivity extends AppCompatActivity {
 
         // Click listener per il pulsante di LOGIN
         loginButton.setOnClickListener(v -> {
-            // Avvio dell'Activity LoginActivity
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+
+            // Controllo se l'utente ha fatto la registrazione
+            // Sarà presente utenteJson con i dati dell'utente registrato
+            if (utenteJson != null) {
+                // invio dei dati dell'utente se registrato
+                intent.putExtra("utente", utenteJson);
+            }
+            startActivity(intent);
         });
 
         // Click listener per il pulsante di REGISTRAZIONE
@@ -42,18 +52,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Ricevi la stringa JSON dall'Intent
-        String utenteJson = getIntent().getStringExtra("utente");
+        utenteJson = getIntent().getStringExtra("utente");
 
         // Converti la stringa JSON in un oggetto Utente
         if (utenteJson != null) {
             Gson gson = new Gson();
             Utente utente = gson.fromJson(utenteJson, Utente.class);
 
-            // Ora puoi usare l'oggetto utente
+            // Visibile nel logcat l'oggetto Utente
             System.out.println("Nome: " + utente.getNome());
             System.out.println("Cognome: " + utente.getCognome());
             System.out.println("Mail: " + utente.getMail());
             System.out.println("Password: " + utente.getPassword());
+
+            registerButton.setVisibility(Button.GONE);
+            registerButton.setEnabled(false); // Disabilita il pulsante di registrazione
         }
     }
 }
