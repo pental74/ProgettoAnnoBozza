@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Button;
 
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -36,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         EditText password = findViewById(R.id.editTextPassword);
         Button registerButton = findViewById(R.id.buttonRegister);
 
+        // Click listener per il pulsante di REGISTRAZIONE
         registerButton.setOnClickListener(v -> {
             // Salvataggio dati inseriti in un oggetto Utente
             String nomeUtente = nome.getText().toString();
@@ -43,10 +45,18 @@ public class RegisterActivity extends AppCompatActivity {
             String mailUtente = mail.getText().toString();
             String passwordUtente = password.getText().toString();
 
+
+
             if(TextUtils.isEmpty(nomeUtente) || TextUtils.isEmpty(cognomeUtente) || TextUtils.isEmpty(mailUtente) || TextUtils.isEmpty(passwordUtente)){
                 // Gestione caso di campi vuoti, si potrebbe visualizzare un messaggio d'errore
+                Toast.makeText(RegisterActivity.this, "Inserisci tutti i dati", Toast.LENGTH_LONG).show();
+
                 return;
             }
+
+            // Visualizzazione dei dati in un toast
+            String datiUtente = "Nome: " + nomeUtente + "\nCognome: " + cognomeUtente + "\nMail: " + mailUtente + "\nPassword: " + passwordUtente;
+            Toast.makeText(RegisterActivity.this, datiUtente, Toast.LENGTH_LONG).show();
 
             // Creazione dell'oggetto Utente
             com.example.progettoannobozza.Utente utente = new com.example.progettoannobozza.Utente(nomeUtente,cognomeUtente,mailUtente,passwordUtente);
@@ -59,7 +69,6 @@ public class RegisterActivity extends AppCompatActivity {
             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
             intent.putExtra("utente", utenteJson);
             startActivity(intent);
-
         });
     }
 }
