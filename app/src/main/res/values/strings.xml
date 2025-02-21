@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ProgettoAnnoBozza</string>
+
+    <array name="sesso_options">
+        <item>Seleziona il genere</item>
+        <item>Maschio</item>
+        <item>Femmina</item>
+    </array>
 </resources>
