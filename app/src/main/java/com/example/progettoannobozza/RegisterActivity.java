@@ -13,8 +13,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.progettoannobozza.Utente;
-import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.gson.Gson;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -50,15 +48,16 @@ public class RegisterActivity extends AppCompatActivity {
             if(TextUtils.isEmpty(nomeUtente) || TextUtils.isEmpty(cognomeUtente) || TextUtils.isEmpty(mailUtente) || TextUtils.isEmpty(passwordUtente)){
                 // Gestione caso di campi vuoti, si potrebbe visualizzare un messaggio d'errore
                 Toast.makeText(RegisterActivity.this, "Inserisci tutti i dati", Toast.LENGTH_LONG).show();
+
                 return;
             }
+
+            // Visualizzazione dei dati in un toast
+            String datiUtente = "Nome: " + nomeUtente + "\nCognome: " + cognomeUtente + "\nMail: " + mailUtente + "\nPassword: " + passwordUtente;
+            Toast.makeText(RegisterActivity.this, datiUtente, Toast.LENGTH_LONG).show();
+
             // Creazione dell'oggetto Utente
             com.example.progettoannobozza.Utente utente = new com.example.progettoannobozza.Utente(nomeUtente,cognomeUtente,mailUtente,passwordUtente);
-
-
-            // Toast UTENTE INSERITO
-            Toast.makeText(RegisterActivity.this, utente.getNome() + " " + utente.getCognome() + "\nREGISTRATO" , Toast.LENGTH_LONG).show();
-
 
             // Converti l'oggetto Utente in JSON
             Gson gson = new Gson();
