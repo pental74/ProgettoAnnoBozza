@@ -15,6 +15,9 @@ import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Creazione dell'oggetto Gson per la conversione JSON
+    Gson gson = new Gson();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +33,6 @@ public class MainActivity extends AppCompatActivity {
         Button loginButton = findViewById(R.id.loginButton);
         Button registerButton = findViewById(R.id.registerButton);
 
-        // Click listener per il pulsante di LOGIN
-        loginButton.setOnClickListener(v -> {
-            // Avvio dell'Activity LoginActivity
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        });
-
         // Click listener per il pulsante di REGISTRAZIONE
         registerButton.setOnClickListener(v -> {
             // Avvio dell'Activity RegisterActivity
@@ -47,15 +44,22 @@ public class MainActivity extends AppCompatActivity {
 
         // Converti la stringa JSON in un oggetto Utente
         if (utenteJson != null) {
-            Gson gson = new Gson();
-            Utente utente = gson.fromJson(utenteJson, Utente.class);
-            Log.d("MainActivity", "Utente: " + utenteJson);
+            Log.d("utente jason", utenteJson);
 
-            // Ora puoi usare l'oggetto utente
-//            System.out.println("Nome: " + utente.getNome());
-//            System.out.println("Cognome: " + utente.getCognome());
-//            System.out.println("Mail: " + utente.getMail());
-//            System.out.println("Password: " + utente.getPassword());
+            Utente utente = gson.fromJson(utenteJson, Utente.class);  // utenteJason è una stringa per questo errore
+            Log.d("utente classe utente", utente.toString());
         }
+
+        // Click listener per il pulsante di LOGIN
+        loginButton.setOnClickListener(v -> {
+            // Avvio dell'Activity LoginActivity
+
+            // invio dei dati dell'utente alla main activity
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            if (!utenteJson.isEmpty()) intent.putExtra("utente", utenteJson);
+            else intent.putExtra("utente", "");
+            startActivity(intent);
+            //startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        });
     }
 }
