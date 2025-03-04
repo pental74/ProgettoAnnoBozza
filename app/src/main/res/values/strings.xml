@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">ProgettoAnnoBozza</string>
+    <string name="registrati">Registrati</string>
+    <string name="accetto_i_termini_e_le_condizioni">Accetto i termini e le condizioni</string>
+    <string name="cognome">Cognome</string>
+    <string name="registrazione">Registrazione</string>
+    <string name="genere">Genere</string>
+    <string name="data_di_nascita">Data di nascita</string>
+    <string name="telefono">Telefono</string>
 
     <array name="sesso_options">
         <item>Seleziona il genere</item>

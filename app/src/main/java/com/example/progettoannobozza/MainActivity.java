@@ -2,6 +2,7 @@ package com.example.progettoannobozza;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -48,12 +49,13 @@ public class MainActivity extends AppCompatActivity {
         if (utenteJson != null) {
             Gson gson = new Gson();
             Utente utente = gson.fromJson(utenteJson, Utente.class);
+            Log.d("MainActivity", "Utente: " + utenteJson);
 
             // Ora puoi usare l'oggetto utente
-            System.out.println("Nome: " + utente.getNome());
-            System.out.println("Cognome: " + utente.getCognome());
-            System.out.println("Mail: " + utente.getMail());
-            System.out.println("Password: " + utente.getPassword());
+//            System.out.println("Nome: " + utente.getNome());
+//            System.out.println("Cognome: " + utente.getCognome());
+//            System.out.println("Mail: " + utente.getMail());
+//            System.out.println("Password: " + utente.getPassword());
         }
     }
 }
