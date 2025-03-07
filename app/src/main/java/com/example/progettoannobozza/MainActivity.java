@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Creazione dell'oggetto Gson per la conversione JSON
     Gson gson = new Gson();
+    String utenteJson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,26 +41,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Ricevi la stringa JSON dall'Intent
-        String utenteJson = getIntent().getStringExtra("utente");
+        utenteJson = getIntent().getStringExtra("utente");
 
         // Converti la stringa JSON in un oggetto Utente
         if (utenteJson != null) {
             Log.d("utente jason", utenteJson);
-
             Utente utente = gson.fromJson(utenteJson, Utente.class);  // utenteJason è una stringa per questo errore
             Log.d("utente classe utente", utente.toString());
+        }
+        else {
+            utenteJson = "vuoto";
+            Log.d("utente jason", "utente vuoto");
         }
 
         // Click listener per il pulsante di LOGIN
         loginButton.setOnClickListener(v -> {
             // Avvio dell'Activity LoginActivity
+            //startActivity(new Intent(MainActivity.this, LoginActivity.class));
+
+            //if (utenteJson == null) utenteJson="vuoto";
 
             // invio dei dati dell'utente alla main activity
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            if (!utenteJson.isEmpty()) intent.putExtra("utente", utenteJson);
-            else intent.putExtra("utente", "");
+            intent.putExtra("Loginutente", utenteJson);
             startActivity(intent);
-            //startActivity(new Intent(MainActivity.this, LoginActivity.class));
         });
     }
 }

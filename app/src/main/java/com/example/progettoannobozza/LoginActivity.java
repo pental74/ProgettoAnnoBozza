@@ -13,6 +13,8 @@ import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity {
 
+    String utenteJson;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,14 +29,16 @@ public class LoginActivity extends AppCompatActivity {
         Gson gson = new Gson();
 
         // Ricevi la stringa JSON dall'Intent
-        String utenteJson = getIntent().getStringExtra("utente");
+        utenteJson = getIntent().getStringExtra("Loginutente");
 
-        // Converti la stringa JSON in un oggetto Utente
-        if (!utenteJson.isEmpty()) {
-            Log.d("utente", utenteJson);
-            // da modificare  utente = gson.fromJson(utenteJson, Utente.class);
-            // Log.d("utente", utente.toString());
+        if (!utenteJson.equals("vuoto")) {
+            Log.d("Login utente jason", utenteJson);
+            Utente utente = gson.fromJson(utenteJson, Utente.class);  // utenteJason è una stringa per questo errore
+            Log.d("Login utente classe utente", utente.toString());
         }
-        else Log.d("utente", "utente vuoto");
+        else {
+            utenteJson = "";
+            Log.d("Login utente jason", "utente vuoto");
+        }
     }
 }
