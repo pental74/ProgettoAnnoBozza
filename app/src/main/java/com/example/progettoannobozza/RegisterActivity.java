@@ -56,6 +56,19 @@ public class RegisterActivity extends AppCompatActivity {
                 password, confirmPassword, email
         };
 
+        // Dati di prova
+        nome.setText("Marco");
+        cognome.setText("Aquilanti");
+        password.setText("MarcoMarco");
+        confirmPassword.setText("MarcoMarco");
+        numeroTelefono.setText("3333333333");
+        email.setText("marco.aquilanti@mgail.com");
+        genere.setSelection(1);
+        dataNascita.updateDate(2000, 1, 1);
+        username.setText("marcoaquilanti");
+
+
+
         // Imposta il listener per ogni EditText
         for (final EditText editText : editTexts) {
             editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -87,16 +100,6 @@ public class RegisterActivity extends AppCompatActivity {
             String genereUtente = genere.getSelectedItem().toString();
             String numeroTelefonoUtente = numeroTelefono.getText().toString();
 
-            // Dati di prova
-            nome.setText("Marco");
-            cognome.setText("Aquilanti");
-            password.setText("MarcoMarco");
-            confirmPassword.setText("MarcoMarco");
-            numeroTelefono.setText("3333333333");
-            email.setText("marco.aquilanti@mgail.com");
-            genere.setSelection(1);
-            dataNascita.updateDate(2000, 1, 1);
-            username.setText("marcoaquilanti");
 
             if (TextUtils.isEmpty(nomeUtente) || TextUtils.isEmpty(cognomeUtente) || TextUtils.isEmpty(mailUtente) || TextUtils.isEmpty(passwordUtente) ||
                     TextUtils.isEmpty(confirmPasswordUtente) || TextUtils.isEmpty(dataNascitaUtente) || TextUtils.isEmpty(genereUtente) ||
